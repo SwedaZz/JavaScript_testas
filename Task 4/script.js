@@ -11,20 +11,43 @@ bent minimalų stilių;
 
 const ENDPOINT = "cars.json";
 
-fetch(ENDPOINT)
-        .then((myData) => myData.json())
-        .then((getData) => {
-          let output = "";
+const displayCars = (cars) => {
+    const output = document.getElementById("output");
+    cars.forEach(car => {
+        const cardDiv = document.createElement("div");
 
-          getData.forEach((item, index) => {
-            output += `
-    <div class="card">
-        <h2 class="brand"> ${item.brand} </h2>
-        <p class="models"> ${item.models} </p>
-    </div>`;
-          });
+        const brand = document.createElement("h1");
+        brand.innerText = car.brand;
 
-          console.log(output)
+        const modelList = document.createElement("ul");
 
-          document.getElementById("output").innerHTML = output;
-        });
+        let numberofModels = car.models.length;
+
+        for (let i = 0; i < numberofModels; ++i) {
+            
+            model = document.createElement('li');
+    
+            model.innerHTML = car.models[i];
+    
+            modelList.appendChild(model);
+        }
+
+        cardDiv.append(brand, modelList);
+
+        output.append(cardDiv);
+    });
+}
+
+const fetchCarCards = async () => {
+    try {
+      const response = await fetch(ENDPOINT);
+      if (response.ok) {
+        const cars = await response.json();
+        displayCars(cars);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  fetchCarCards();

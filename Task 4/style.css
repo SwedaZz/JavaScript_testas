@@ -34,20 +34,23 @@
   justify-content: center;
 }
 
-.card {
-  width: 250px;
-  margin: 1rem;
-  padding: 10px;
-  text-align: center;
+#output div {
   border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(206, 206, 206);
+  margin: 10px;
+  min-width: 200px;
+  text-align: center;
+  padding: 1rem;
+
 }
 
-.brand {
-  margin-bottom: 1rem;
+#output div h1{
+  margin: 0%;
+  margin-bottom: 1.5rem;
 }
 
-.models {
-  word-wrap: break-word;
+#output div ul li{
+  list-style-type: none;
+  margin-bottom: 5px;
 }
-
-
